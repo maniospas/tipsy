@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crawl</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        async function updateCrawlStatus() {
+            try {
+                const response = await fetch("/crawl/status");
+                if (!response.ok) throw new Error("Failed to fetch status");
+
+                const data = await response.json();
+
+                // Update the crawl status in the HTML
+                document.getElementById("total-crawled-pages").textContent = data.total_crawled_pages;
+                document.getElementById("links-waiting").textContent = data.links_waiting;
+            } catch (error) {
+                console.error("Error updating crawl status:", error);
+            }
+        }
+
+        setInterval(updateCrawlStatus, 500);
+
+        document.addEventListener("DOMContentLoaded", updateCrawlStatus);
+    </script>
+</head>
+<body>
+<div class="container">
+        <nav class="tabs">
+            <a href="/">Search</a>
+            <a href="/crawl" class="active">Crawl</a>
+        </nav>
+        <h1>Add Page to Crawl</h1>
+        <form action="/crawl" method="post">
+            <input type="text" name="url" placeholder="Page URL" required />
+            <button type="submit">Add Page</button>
+        </form>
+
+        {% if message %}
+        <p>{{ message }}</p>
+        {% endif %}
+
+        <h2>Crawl Status</h2>
+        <ul>
+            <li>Total Crawled Pages: <span id="total-crawled-pages">0</span></li>
+            <li>Links Waiting to be Crawled: <span id="links-waiting">0</span></li>
+        </ul>
+</div>
+</body>
+</html>

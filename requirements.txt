@@ -1,0 +1,7 @@
+fastapi
+pydantic
+sqlalchemy
+bs4
+requests
+jinja2
+python-multipart

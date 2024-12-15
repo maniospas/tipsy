@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <nav class="tabs">
+        <a href="/" class="active">Search</a>
+        <a href="/crawl">Crawl</a>
+    </nav>
+    <h1>Search</h1>
+    <form action="/search" method="post">
+        <input type="text" name="q" placeholder="Keywords" required />
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+    <h2>Results for "{{ query }}"</h2>
+    {% if results %}
+    <ul>
+        {% for r in results %}
+        <li>
+            <a href="{{ r.url }}">{{ r.title if r.title else r.url }}</a>
+            (Trust: {{ r.trust }})
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+    {% endif %}
+</div>
+</body>
+</html>

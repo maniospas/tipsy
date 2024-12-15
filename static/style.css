@@ -1,0 +1,47 @@
+h1 {
+    color: #2a9d8f;
+}
+
+.container {
+    width: 800px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+
+    /* Center the entire page */
+    display: flex;
+    justify-content: center;
+    min-height: 100vh; /* Ensure the body takes up the full viewport height */
+}
+
+nav.tabs {
+    display: flex;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+}
+
+nav.tabs a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #555;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom 0.3s, color 0.3s;
+}
+
+nav.tabs a:hover {
+    color: #000;
+    border-bottom: 3px solid #aaa;
+}
+
+nav.tabs a.active {
+    color: #000;
+    border-bottom: 3px solid #007bff;
+    font-weight: bold;
+}
